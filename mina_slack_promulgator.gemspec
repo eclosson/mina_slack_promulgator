@@ -1,15 +1,15 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'mina_slack_promulgator/version'
+require 'mina/slack/promulgator/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "mina_slack_promulgator"
-  spec.version       = MinaSlackPromulgator::VERSION
-  spec.authors       = ["Evan Closson"]
-  spec.email         = ["eclosson@medivo.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.version       = Mina::Slack::Promulgator::VERSION
+  spec.authors       = ["Evan Closson", "Matthew Powers"]
+  spec.email         = ["eclosson@medivo.com", "mpowers@medivo.com"]
+  spec.summary       = %q{Mina Deploy Notifications in Slack}
+  spec.description   = %q{Mina Deploy Notifications in Slack.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
