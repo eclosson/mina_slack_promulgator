@@ -16,7 +16,7 @@ namespace :slack do
     task :success do
       Mina::Slack::Promulgator::Helper.requirements_check(slack_promulgator_webhook_url)
 
-      message = Mina::Slack::Promulgator::Helper.success_message(slack_promulgator_success_message_emoji, project_name, slack_promulgator_github_url)
+      message = Mina::Slack::Promulgator::Helper.success_message(slack_promulgator_success_message_emoji, repository, slack_promulgator_github_url)
       payload = Mina::Slack::Promulgator::Helper.success_payload(message, slack_promulgator_channel, slack_promulgator_name, slack_promulgator_application_emoji)
 
       queue %{
@@ -29,7 +29,7 @@ namespace :slack do
     task :failure do
       Mina::Slack::Promulgator::Helper.requirements_check(slack_promulgator_webhook_url)
 
-      message = Mina::Slack::Promulgator::Helper.failure_message(slack_promulgator_failure_message_emoji, project_name, slack_promulgator_github_url)
+      message = Mina::Slack::Promulgator::Helper.failure_message(slack_promulgator_failure_message_emoji, repository, slack_promulgator_github_url)
       payload = Mina::Slack::Promulgator::Helper.failure_payload(message, slack_promulgator_channel, slack_promulgator_name, slack_promulgator_application_emoji)
 
       queue %{

@@ -7,18 +7,23 @@ module Mina
           raise "Must set 'slack_promulgator_webhook_url' in your deploy file for promulgator to work" unless slack_promulgator_webhook_url
         end
 
+        def self.project_name(repository)
+          regex = /:(\w+)\/((\w|-)+)/
+          repository.match(regex)[2]
+        end
+
         def self.default_github_url
           remote_origin_url = `git config --get remote.origin.url`
           path = remote_origin_url.gsub("git@", "").gsub(".git", "").gsub("github.com:", "github.com/")
           "https://#{path}".strip
         end
 
-        def self.success_message(emoji, project_name, github_url)
-          "#{emoji} [#{project_name}] deployed: #{github_url}/commit/'\"$GIT_HASH\"'"
+        def self.success_message(emoji, repository, github_url)
+          "#{emoji} [#{project_name(repository)}] deployed: #{github_url}/commit/'\"$GIT_HASH\"'"
         end
 
-        def self.failure_message(emoji, project_name, github_url)
-          "#{emoji} [#{project_name}] deploy failed: #{github_url}/commit/'\"$GIT_HASH\"'"
+        def self.failure_message(emoji, repository, github_url)
+          "#{emoji} [#{project_name(repository)}] deploy failed: #{github_url}/commit/'\"$GIT_HASH\"'"
         end
 
         def self.success_payload(text, channel, name, application_emoji)
