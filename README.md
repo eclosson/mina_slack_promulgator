@@ -6,7 +6,9 @@ Simple mina deploy success/failure notifications to slack channels.
 
 Add this line to your application's Gemfile:
 
-    gem 'mina_slack_promulgator'
+```ruby
+gem 'mina_slack_promulgator'
+```
 
 And then execute:
 
@@ -20,21 +22,35 @@ Or install it yourself as:
 
 Require within your mina deploy.rb:
 
-    require 'mina/slack/promulgator'
-    
+```ruby
+require 'mina/slack/promulgator'
+```
+
+Set the required mina variables:
+
+```ruby
+set :slack_promulgator_webhook_url, "your slack webhook url"
+set :slack_promulgator_channel, "slack channel, e.g. #general"
+set :slack_promulgator_application_emoji, "emoji, e.g. :smile:"
+```
+
 Call success on launch in deploy.rb:
 
-    to :launch do
-      { ... other launch tasks ... }
-      invoke :'slack:promulgator:success'
-    end
-    
+```ruby
+to :launch do
+  { ... other launch tasks ... }
+  invoke :'slack:promulgator:success'
+end
+```
+
 Call failure on clean in deploy.rb:
 
-    to :clean do
-      { ... other cleanup tasks ... }
-      invoke :'slack:promulgator:failure'
-    end
+```ruby
+to :clean do
+  { ... other cleanup tasks ... }
+  invoke :'slack:promulgator:failure'
+end
+```
 
 ## Contributing
 
